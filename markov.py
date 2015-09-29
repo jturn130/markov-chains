@@ -50,9 +50,9 @@ def make_chains(text_string, n):
     # # print words
 
     word_key = words[:n]
-    print word_key
+    # print word_key
     tuple_key = tuple(word_key)
-    print "This is a tuple key: {}".format(tuple_key)
+    # print "This is a tuple key: {}".format(tuple_key)
 
     for i in range(len(words)-n): #update range, probably n?
         # create empty list to hold n-length chain
@@ -66,7 +66,7 @@ def make_chains(text_string, n):
         # take all of word_key except the first item
         word_key = word_key[1:]
         word_key.append(words[i+n])
-        print "This is the updated word_key: {}".format(word_key)
+        # print "This is the updated word_key: {}".format(word_key)
         tuple_key = tuple(word_key)
 
     return chains
@@ -79,9 +79,13 @@ def make_text(chains):
     # your code goes here
 
     random_key = choice(chains.keys())
-    word1, word2 = random_key
-    if text == "":
-        text = " ".join(random_key)
+    # convert random_key tuple to list
+    
+    temp_keys = list(random_key)
+
+    # word1, word2 = random_key
+    # if text == "":
+    #     text = " ".join(random_key)
 
     # print "This is text: {}".format(text)
 
@@ -91,9 +95,17 @@ def make_text(chains):
             next_word = choice(chains[random_key])
             
             text += (" " + next_word)
+            # update random_key tuple
+            # a. update random_key list
+            # b. convert random_key list to tuple
+                
+            temp_keys = temp_keys[1:]
+            temp_keys.append(next_word)
 
-            random_key = (word2, next_word)
-            word2 = next_word
+            random_key = tuple(temp_keys)
+
+            # random_key = (word2, next_word)
+            # word2 = next_word
             # print "This is text: {}".format(text)
             # print "This is next_key: ({}, {})".format(random_key[0], random_key[1])
         except KeyError:
