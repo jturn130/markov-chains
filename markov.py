@@ -80,12 +80,13 @@ def make_text(chains):
 
     random_key = choice(chains.keys())
     # convert random_key tuple to list
-    
+    while not random_key[0][0].isupper():
+        random_key = choice(chains.keys())
+    print random_key    
     temp_keys = list(random_key)
 
     # word1, word2 = random_key
-    # if text == "":
-    #     text = " ".join(random_key)
+    text = " ".join(random_key)
 
     # print "This is text: {}".format(text)
 
