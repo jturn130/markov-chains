@@ -2,10 +2,24 @@
 ex: python markov.py corpus.txt 3 --> produces 3-word Markov chains
 """
 from random import choice
-import sys
+import argparse
 
-input_path = sys.argv[1]
-n_gram = int(sys.argv[2])
+parser = argparse.ArgumentParser()
+parser.add_argument("-n", type=int,
+                    help="specify length of n-gram") # choices=['n is an integer > 0'])
+parser.add_argument("filename", help="input text file")
+args = parser.parse_args()
+
+n_gram = args.n if args.n else 2
+# if args.n:
+#     n_gram = args.n
+
+# else:
+#     n_gram = 2 # default value
+
+input_path = args.filename
+# input_path = sys.argv[1]
+# n_gram = int(sys.argv[2])
 
 
 def open_and_read_file(file_path):
